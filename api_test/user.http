@@ -1,0 +1,7 @@
+### Detail Account
+GET http://localhost:8000/user/detail
+Content-Type: application/json
+
+{
+    "id":"67139447113d3f844950f26c"
+}

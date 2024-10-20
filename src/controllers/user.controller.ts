@@ -26,42 +26,34 @@ const UserController = {
   heandleUpdate: async (req: Request, res: Response) => {
     try {
       const { email, username } = req.body;
+      const { userId } = res.locals.id;
 
       if (!email || !username) {
-        console.log(req.body);
-        console.log(username);
-        console.log(res.locals.id);
         res.status(400).json({ message: "Email & Username must be valid" });
       } else {
-        console.log(req.body);
-        console.log(username);
-        console.log(res.locals.id);
-        // const data = await UserServices.getDataById(user.id);
-        // if (data) {
-        //   const payloadData: Partial<{
-        //     username: string;
-        //     email: string;
-        //   }> = {};
-        //   if (username) {
-        //     payloadData.username = username;
-        //   }
-        //   if (email) {
-        //     payloadData.email = email;
-        //   }
-        //   const updateData = await UserServices.updateData(
-        //     user.id,
-        //     payloadData
-        //   );
-        //   if (updateData) {
-        //     res
-        //       .status(201)
-        //       .json({ message: "Succsess Update", data: payloadData });
-        //   } else {
-        //     res.status(400).json({ message: "Failed Update" });
-        //   }
-        // } else {
-        //   res.status(400).json({ message: "Account not found" });
-        // }
+        const data = await UserServices.getDataById(userId);
+        if (data) {
+          const payloadData: Partial<{
+            username: string;
+            email: string;
+          }> = {};
+          if (username) {
+            payloadData.username = username;
+          }
+          if (email) {
+            payloadData.email = email;
+          }
+          const updateData = await UserServices.updateData(userId, payloadData);
+          if (updateData) {
+            res
+              .status(201)
+              .json({ message: "Succsess Update", data: payloadData });
+          } else {
+            res.status(400).json({ message: "Failed Update" });
+          }
+        } else {
+          res.status(400).json({ message: "Account not found" });
+        }
       }
     } catch (error) {
       res.status(500).json({ message: "Error", error: error });

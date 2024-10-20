@@ -5,6 +5,7 @@ import { authRouter } from "./router/auth.router";
 import { accountRouter } from "./router/user.router";
 import cookieParser from "cookie-parser";
 import { categoryRouter } from "./router/category.router";
+import { threadRouter } from "./router/thread.router";
 
 dotenv.config();
 
@@ -22,8 +23,9 @@ const apiVersion: string = `/api/${process.env.VERSION}`;
 
 // ### Router
 app.use(apiVersion, authRouter);
-app.use(apiVersion, categoryRouter);
 app.use(apiVersion, accountRouter);
+app.use(apiVersion, categoryRouter);
+app.use(apiVersion, threadRouter);
 // Category
 // Thread
 // Reply

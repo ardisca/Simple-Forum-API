@@ -4,10 +4,10 @@ import { verifyToken } from "../middlewares/token.middlewares";
 
 export const accountRouter = express.Router();
 
-accountRouter.get("/detail", verifyToken, UserController.heandleDetail);
-accountRouter.patch("/detail", verifyToken, UserController.heandleUpdate);
+accountRouter.get("/user/detail", verifyToken, UserController.heandleDetail);
+accountRouter.patch("/user/detail", verifyToken, UserController.heandleUpdate);
 accountRouter.patch(
-  "/change-password",
+  "/user/change-password",
   verifyToken,
   UserController.heandleUpdatePassword
 );

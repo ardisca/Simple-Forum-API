@@ -26,8 +26,7 @@ const UserController = {
   heandleUpdate: async (req: Request, res: Response) => {
     try {
       const { email, username } = req.body;
-      const { userId } = res.locals.id;
-
+      const userId = res.locals.id;
       if (!email || !username) {
         res.status(400).json({ message: "Email & Username must be valid" });
       } else {

@@ -4,14 +4,17 @@ import ThreadServices from "../services/thread.services";
 const ThreadController = {
   heandleGetAllData: async (req: Request, res: Response) => {
     try {
+      console.log("test");
+
       const data = await ThreadServices.getAllData();
+
       if (!data) {
-        res.status(200).json({ message: "Succsess Get Data", data });
-      } else {
         res.status(400).json({ message: "Failed" });
+      } else {
+        res.status(200).json({ message: "Succsess Get Data", data });
       }
     } catch (error) {
-      res.status(500).json({ message: "Error", error: error });
+      res.status(500).json({ message: "Error", error });
     }
   },
   heandleGetDataById: async (req: Request, res: Response) => {
@@ -20,9 +23,9 @@ const ThreadController = {
 
       const data = await ThreadServices.getDataById(id);
       if (!data) {
-        res.status(200).json({ message: "Succsess Get Data", data });
-      } else {
         res.status(400).json({ message: "Failed" });
+      } else {
+        res.status(200).json({ message: "Succsess Get Data", data });
       }
     } catch (error) {
       res.status(500).json({ message: "Error", error: error });
@@ -31,12 +34,14 @@ const ThreadController = {
   heandlePostData: async (req: Request, res: Response) => {
     try {
       const { title, content, categoryId } = req.body;
-      const { userId } = res.locals.id;
+      const userId = res.locals.id;
       if (!title || !content || !categoryId) {
         res.status(400).json({
           message: "Title, Content and Category must be valid",
         });
       } else {
+        const payload = { title, content, categoryId, userId };
+        console.log(payload);
         const data = await ThreadServices.postData(
           title,
           content,

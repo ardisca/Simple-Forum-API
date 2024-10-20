@@ -3,7 +3,7 @@ GET http://localhost:8000/api/v1/user/detail
 Content-Type: application/json
 
 {
-    "id":"67139447113d3f844950f26c"
+    "id":"67143e247fa25186bc1c3509"
 }
 
 ### Update Account

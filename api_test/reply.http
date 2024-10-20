@@ -1,0 +1,37 @@
+# 6714751f80e1525131a2a4ce
+
+### Get All Reply
+GET http://localhost:8000/api/v1/reply
+Content-Type: application/json
+
+{
+    "id":"6714751f80e1525131a2a4ce"
+}
+
+
+### Add Reply
+POST http://localhost:8000/api/v1/reply
+Content-Type: application/json
+
+{
+   "content":"Keren gan",
+   "threadId":"6714751f80e1525131a2a4ce" 
+}
+
+
+### Update Reply
+PATCH  http://localhost:8000/api/v1/reply
+Content-Type: application/json
+
+{
+    "id": "67147a1d3c7bc9e50f643e9b",
+    "content":"Test"
+}
+
+### Delete Reply
+DELETE  http://localhost:8000/api/v1/reply
+Content-Type: application/json
+
+{
+    "id":"671452a281f5b18c196c2456"
+}

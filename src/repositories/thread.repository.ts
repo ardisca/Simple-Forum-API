@@ -2,13 +2,15 @@ import { Thread } from "../models/thread.mode";
 
 const ThreadRepository = {
   get: async () => {
-    const data = await Thread.find().populate("userId").populate("categoryId");
+    const data = await Thread.find()
+      .populate({ path: "categoryId", select: "name" })
+      .populate({ path: "userId", select: "username email" });
     return data;
   },
   getById: async (_id: string) => {
     const data = await Thread.findById(_id)
-      .populate("userId")
-      .populate("categoryId");
+      .populate("categoryId")
+      .populate("userId");
     return data;
   },
   post: async (

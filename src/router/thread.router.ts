@@ -10,6 +10,7 @@ threadRouter.get(
   verifyToken,
   ThreadController.heandleGetDataById
 );
+threadRouter.post("/thread", verifyToken, ThreadController.heandlePostData);
 threadRouter.patch("/thread", verifyToken, ThreadController.heandlePatchData);
 threadRouter.delete(
   "/thread",

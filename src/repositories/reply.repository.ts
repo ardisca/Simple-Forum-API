@@ -3,19 +3,26 @@ import { Reply } from "../models/reply.model";
 const ReplyRepository = {
   get: async (threadId: string) => {
     const data = await Reply.find({ threadId })
-      .populate("userId")
-      .populate("threadId");
+      .populate({ path: "userId", select: "username" })
+      .populate({
+        path: "threadId",
+        select: "title content categoryId",
+        populate: {
+          path: "categoryId",
+          select: "name",
+        },
+      });
     return data;
   },
   getById: async (_id: string) => {
     const data = await Reply.findById(_id)
-      .populate("userId")
-      .populate("threadId");
+      .populate({ path: "userId", select: "username" })
+      .populate({ path: "threadId", select: "title content categoryId" });
     return data;
   },
-  post: async (conntent: string, userId: string, threadId: string) => {
+  post: async (content: string, userId: string, threadId: string) => {
     const data = new Reply({
-      conntent,
+      content,
       userId,
       threadId,
     });

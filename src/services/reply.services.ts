@@ -9,12 +9,12 @@ const ReplyServices = {
     const data = await ReplyRepository.getById(id);
     return data;
   },
-  postData: async (conntent: string, userId: string, threadId: string) => {
-    const data = await ReplyRepository.post(conntent, userId, threadId);
+  postData: async (content: string, userId: string, threadId: string) => {
+    const data = await ReplyRepository.post(content, threadId, userId);
     return data;
   },
-  petchData: async (id: string, conntent: string) => {
-    const data = await ReplyRepository.petch(id, conntent);
+  petchData: async (id: string, content: string) => {
+    const data = await ReplyRepository.petch(id, content);
     return data;
   },
   deleteData: async (id: string) => {

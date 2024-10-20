@@ -26,6 +26,7 @@ export const verifyToken = async (
     // };
 
     res.locals.id = payload.id;
+
     next();
   } catch (error) {
     if (!refreshToken) {

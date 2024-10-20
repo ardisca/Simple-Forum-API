@@ -4,6 +4,7 @@ import mongoose from "mongoose";
 import { authRouter } from "./router/auth.router";
 import { accountRouter } from "./router/user.router";
 import cookieParser from "cookie-parser";
+import { categoryRouter } from "./router/category.router";
 
 dotenv.config();
 
@@ -17,9 +18,13 @@ const app = express();
 app.use(express.json());
 app.use(cookieParser());
 
+const apiVersion: string = `/api/${process.env.VERSION}`;
+
 // ### Router
-app.use("/", authRouter);
-app.use("/user", accountRouter);
+app.use(apiVersion, authRouter);
+app.use(apiVersion, categoryRouter);
+app.use(apiVersion, accountRouter);
+// Category
 // Thread
 // Reply
 

@@ -1,7 +1,25 @@
 ### Detail Account
-GET http://localhost:8000/user/detail
+GET http://localhost:8000/api/v1/user/detail
 Content-Type: application/json
 
 {
     "id":"67139447113d3f844950f26c"
+}
+
+### Update Account
+PATCH http://localhost:8000/api/v1/user/detail
+Content-Type: application/json
+
+{
+    "username": "Ardiscass",
+    "email": "ardisca99@gmail.com"
+}
+
+### Update Password
+PATCH http://localhost:8000/api/v1/user/change-password
+Content-Type: application/json
+
+{
+    "oldPassword": "123",
+    "newPassword": "321"
 }

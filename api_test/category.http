@@ -1,0 +1,19 @@
+### Get All Category
+GET http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+### Add Category
+POST  http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+{
+    "name":"Test"
+}
+
+### Delete Category
+DELETE  http://localhost:8000/api/v1/category
+Content-Type: application/json
+
+{
+    "id":"671452a281f5b18c196c2456"
+}

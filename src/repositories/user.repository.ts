@@ -16,15 +16,9 @@ const UserRepository = {
   },
   updateData: async (
     id: string,
-    username?: string,
-    email?: string,
-    password?: string
+    payloadData: Partial<{ username: string; email: string; password: string }>
   ) => {
-    const data = await User.findByIdAndUpdate(id, {
-      username,
-      email,
-      password,
-    });
+    const data = await User.findByIdAndUpdate(id, payloadData);
     return data;
   },
 };

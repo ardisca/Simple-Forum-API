@@ -9,12 +9,11 @@ const UserServices = {
     const data = await UserRepository.getDataById(id);
     return data;
   },
-  updateData: async (id: string, username: string, email: string) => {
-    const data = await UserRepository.updateData(id, username, email);
-    return data;
-  },
-  updateDataPassword: async (id: string, newPassword: string) => {
-    const data = await UserRepository.updateData(id, newPassword);
+  updateData: async (
+    id: string,
+    payloadData: Partial<{ username: string; email: string; password: string }>
+  ) => {
+    const data = await UserRepository.updateData(id, payloadData);
     return data;
   },
 };

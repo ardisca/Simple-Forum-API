@@ -15,6 +15,17 @@ export const verifyToken = async (
 
   try {
     jwt.verify(accessToken, process.env.JWT_ACCESS_SCREET as string);
+    const payload = jwt.decode(accessToken) as {
+      id: string;
+      username: string;
+      email: string;
+    };
+
+    // req.body = {
+    //   id: payload.id,
+    // };
+
+    res.locals.id = payload.id;
     next();
   } catch (error) {
     if (!refreshToken) {
@@ -45,6 +56,8 @@ export const verifyToken = async (
         }
       );
       res.cookie("accessToken", newAccessToken, { httpOnly: true });
+      res.locals.id = payload.id;
+
       next();
     } catch (error) {
       res.status(500).json({ message: "Error", error });

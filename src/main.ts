@@ -6,6 +6,7 @@ import { accountRouter } from "./router/user.router";
 import cookieParser from "cookie-parser";
 import { categoryRouter } from "./router/category.router";
 import { threadRouter } from "./router/thread.router";
+import { replyRouter } from "./router/reply.router";
 
 dotenv.config();
 
@@ -26,9 +27,7 @@ app.use(apiVersion, authRouter);
 app.use(apiVersion, accountRouter);
 app.use(apiVersion, categoryRouter);
 app.use(apiVersion, threadRouter);
-// Category
-// Thread
-// Reply
+app.use(apiVersion, replyRouter);
 
 app.listen(process.env.PORT, () => {
   console.log(`Connect Port ${process.env.PORT}`);
